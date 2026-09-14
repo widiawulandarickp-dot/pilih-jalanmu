@@ -1,0 +1,318 @@
+:root {
+    /* Palet Warna Utama (Fresh & Modern Pastel) */
+    --primary: #4F46E5;            /* Indigo Modern */
+    --primary-hover: #4338CA;
+    --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+    --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #F3E8FF 50%, #FCE7F3 100%);
+    
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --text-color: #1E293B;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+
+    /* Warna Akses untuk Pilihan A (Teal Blue) */
+    --pilihan-a-bg: #EFF6FF;
+    --pilihan-a-border: #93C5FD;
+    --pilihan-a-accent: #2563EB;
+
+    /* Warna Akses untuk Pilihan B (Warm Amber/Coral) */
+    --pilihan-b-bg: #FFF7ED;
+    --pilihan-b-border: #FDBA74;
+    --pilihan-b-accent: #EA580C;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header / Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 24px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    background-color: rgba(226, 232, 240, 0.6);
+    height: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary-gradient);
+    width: 0%;
+    transition: width 0.4s ease-in-out;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Main Container */
+.container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Cards / Step Sections dengan Efek Glassmorphism */
+.step-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.step-card.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    color: #0F172A;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.5rem; }
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-image {
+    font-size: 4.5rem;
+    text-align: center;
+    margin: 30px 0;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #334155;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #FFFFFF;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Grid Layout untuk Membandingkan Pilihan */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+@media (max-width: 650px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.option-card {
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s ease;
+}
+
+/* Kartu Pilihan A */
+.option-card.card-a {
+    background-color: var(--pilihan-a-bg);
+    border: 2px solid var(--pilihan-a-border);
+}
+
+.option-card.card-a h3 {
+    color: var(--pilihan-a-accent);
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+}
+
+/* Kartu Pilihan B */
+.option-card.card-b {
+    background-color: var(--pilihan-b-bg);
+    border: 2px solid var(--pilihan-b-border);
+}
+
+.option-card.card-b h3 {
+    color: var(--pilihan-b-accent);
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+}
+
+/* Button Styling */
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+.btn-secondary {
+    background-color: #F1F5F9;
+    color: #475569;
+    border: 1px solid #CBD5E1;
+}
+
+.btn-secondary:hover {
+    background-color: #E2E8F0;
+    color: #1E293B;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.mb-2 { margin-bottom: 12px; }
+.mt-3 { margin-top: 24px; }
+
+/* Tampilan Halaman Hasil */
+.result-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.badge-decision {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    color: #92400E;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid #FCD34D;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+}
+
+.summary-box {
+    background: #F8FAFC;
+    border-left: 5px solid var(--primary);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-box h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.summary-box ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.summary-box ul li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #E2E8F0;
+}
+
+.summary-box ul li:last-child {
+    border-bottom: none;
+}
+
+.reflective-quote {
+    background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+    color: #3730A3;
+    padding: 24px;
+    border-radius: 16px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 25px;
+    line-height: 1.7;
+    font-weight: 500;
+    border: 1px solid #C7D2FE;
+}

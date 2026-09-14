@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PILIH JALANMU - Pendukung Bimbingan & Konseling</title>
+    
+    <!-- Path relatif agar bisa dibuka langsung dari HP via File Manager / Browser -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">✨ PILIH JALANMU</div>
+        <div class="tagline">"Bantu dirimu menemukan pilihan terbaik."</div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" id="progressContainer" style="display: none;">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="container">
+
+        <!-- 1. HALAMAN BERANDA -->
+        <section id="step-1" class="step-card active">
+            <h1>Selamat Datang di PILIH JALANMU 👋</h1>
+            <p class="subtitle">Sedang bingung menentukan pilihan? Yuk, kenali masalahmu, pertimbangkan pilihanmu, dan tentukan langkahmu dengan tenang.</p>
+            <div class="hero-image">🧭</div>
+            <button class="btn btn-primary btn-block" onclick="nextStep(2)">Mulai Sekarang →</button>
+        </section>
+
+        <!-- 2. HALAMAN IDENTIFIKASI MASALAH -->
+        <section id="step-2" class="step-card">
+            <h2>1. Identifikasi Masalah 🔍</h2>
+            <p class="subtitle">Langkah pertama adalah memahami situasi yang sedang kamu hadapi saat ini.</p>
+            
+            <div class="form-group">
+                <label>Apa yang sedang membuatmu bingung?</label>
+                <select id="kategoriMasalah" class="form-control">
+                    <option value="" disabled selected>-- Pilih Kategori Masalah --</option>
+                    <option value="Pendidikan/Kuliah">🎓 Pendidikan / Kuliah</option>
+                    <option value="Pertemanan">🤝 Pertemanan</option>
+                    <option value="Keluarga">🏠 Keluarga</option>
+                    <option value="Hubungan">❤️ Hubungan</option>
+                    <option value="Karier">💼 Karier</option>
+                    <option value="Diri Sendiri">🌱 Diri Sendiri</option>
+                    <option value="Lainnya">📌 Lainnya</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Ceritakan secara singkat masalahmu:</label>
+                <textarea id="deskripsiMasalah" class="form-control" rows="4" placeholder="Tuliskan gambaran singkat mengenai situasi atau dilema yang sedang kamu alami..."></textarea>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="nextStep(1)">← Kembali</button>
+                <button class="btn btn-primary" onclick="validateStep2()">Lanjut →</button>
+            </div>
+        </section>
+
+        <!-- 3. HALAMAN MEMBANDINGKAN PILIHAN -->
+        <section id="step-3" class="step-card">
+            <h2>2. Membandingkan Pilihan ⚖️</h2>
+            <p class="subtitle">Tuliskan 2 opsi yang ada di pikiranmu dan pertimbangkan sisi positif serta risikonya.</p>
+            
+            <div class="comparison-grid">
+                <!-- PILIHAN A -->
+                <div class="option-card card-a">
+                    <h3>🔹 Pilihan A</h3>
+                    <input type="text" id="namaA" class="form-control mb-2" placeholder="Nama Pilihan A (misal: Lanjut S2)">
+                    
+                    <label>Kelebihan (+):</label>
+                    <textarea id="kelebihanA" class="form-control mb-2" placeholder="Hal-hal menguntungkan dari pilihan ini..."></textarea>
+                    
+                    <label>Kekurangan (-):</label>
+                    <textarea id="kekuranganA" class="form-control mb-2" placeholder="Hal-hal yang kurang baik dari pilihan ini..."></textarea>
+                    
+                    <label>Hal yang Saya Rasakan:</label>
+                    <textarea id="perasaanA" class="form-control mb-2" placeholder="Bagaimana perasaanmu saat membayangkan opsi ini?"></textarea>
+                    
+                    <label>Risiko yang Mungkin Terjadi:</label>
+                    <textarea id="risikoA" class="form-control" placeholder="Tantangan atau risiko terburuk..."></textarea>
+                </div>
+
+                <!-- PILIHAN B -->
+                <div class="option-card card-b">
+                    <h3>🔸 Pilihan B</h3>
+                    <input type="text" id="namaB" class="form-control mb-2" placeholder="Nama Pilihan B (misal: Langsung Kerja)">
+                    
+                    <label>Kelebihan (+):</label>
+                    <textarea id="kelebihanB" class="form-control mb-2" placeholder="Hal-hal menguntungkan dari pilihan ini..."></textarea>
+                    
+                    <label>Kekurangan (-):</label>
+                    <textarea id="kekuranganB" class="form-control mb-2" placeholder="Hal-hal yang kurang baik dari pilihan ini..."></textarea>
+                    
+                    <label>Hal yang Saya Rasakan:</label>
+                    <textarea id="perasaanB" class="form-control mb-2" placeholder="Bagaimana perasaanmu saat membayangkan opsi ini?"></textarea>
+                    
+                    <label>Risiko yang Mungkin Terjadi:</label>
+                    <textarea id="risikoB" class="form-control" placeholder="Tantangan atau risiko terburuk..."></textarea>
+                </div>
+            </div>
+
+            <div class="btn-group mt-3">
+                <button class="btn btn-secondary" onclick="nextStep(2)">← Kembali</button>
+                <button class="btn btn-primary" onclick="validateStep3()">Lanjut →</button>
+            </div>
+        </section>
+
+        <!-- 4. HALAMAN REFLEKSI -->
+        <section id="step-4" class="step-card">
+            <h2>3. Refleksi Diri 💭</h2>
+            <p class="subtitle">Jawab pertanyaan reflektif berikut berdasarkan kata hatimu saat ini.</p>
+
+            <div class="form-group">
+                <label>1. Pilihan mana yang paling sesuai dengan keinginanmu?</label>
+                <select id="refleksiKeinginan" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label>2. Pilihan mana yang paling sesuai dengan kondisi saat ini?</label>
+                <select id="refleksiKondisi" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label>3. Apa risiko yang paling siap kamu hadapi?</label>
+                <select id="refleksiRisiko" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label>4. Apa yang paling penting bagi dirimu dalam mengambil keputusan ini?</label>
+                <textarea id="refleksiPenting" class="form-control" rows="3" placeholder="Contoh: Ketenangan hati, dukungan keluarga, kemandirian finansial..."></textarea>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="nextStep(3)">← Kembali</button>
+                <button class="btn btn-primary" onclick="generateResult()">Lihat Hasil Refleksi ✨</button>
+            </div>
+        </section>
+
+        <!-- 5. HALAMAN HASIL -->
+        <section id="step-5" class="step-card">
+            <div class="result-header">
+                <h2>Rangkuman Refleksi Keputusan 🎯</h2>
+                <div class="badge-decision">💡 Keputusan ada di tanganmu.</div>
+            </div>
+
+            <div class="summary-box">
+                <h4>Kategori & Deskripsi Masalah:</h4>
+                <p><strong><span id="resKategori"></span></strong> — <span id="resMasalah"></span></p>
+            </div>
+
+            <h3 style="margin-bottom: 16px;">Perbandingan Pilihan</h3>
+            <div class="comparison-grid" id="resultGrid">
+                <!-- Rangkuman A dan B diisi oleh JavaScript -->
+            </div>
+
+            <div class="summary-box mt-3">
+                <h4>Hasil Refleksimu:</h4>
+                <ul>
+                    <li>Pilihan paling sesuai keinginan: <strong><span id="resKeinginan"></span></strong></li>
+                    <li>Pilihan paling sesuai kondisi: <strong><span id="resKondisi"></span></strong></li>
+                    <li>Risiko yang paling siap dihadapi: <strong><span id="resRisikoReady"></span></strong></li>
+                    <li>Prinsip/hal paling penting bagimu: <strong><span id="resPenting"></span></strong></li>
+                </ul>
+            </div>
+
+            <div class="reflective-quote">
+                “Tidak ada keputusan yang selalu sempurna. Yang penting adalah kamu memahami pilihanmu dan siap bertanggung jawab atas langkah yang kamu ambil.”
+            </div>
+
+            <button class="btn btn-primary btn-block" onclick="restart()">🔄 Mulai Lagi</button>
+        </section>
+
+    </main>
+
+    <!-- Path relatif ke JavaScript -->
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
